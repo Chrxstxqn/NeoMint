@@ -4,12 +4,21 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '**.json'
+      - '**.md'
+      - '**.png'
+      - '**.vsix'
+      - 'themes/**'
+      - 'package.json'
 
 jobs:
-  publish:
+  build-and-publish:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -19,7 +28,13 @@ jobs:
       - name: Install vsce
         run: npm install -g vsce
 
-      - name: Publish Extension
-        run: vsce publish
+      - name: Install dependencies
+        run: npm install
+
+      - name: Package extension (optional)
+        run: vsce package
+
+      - name: Publish extension
         env:
-          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: vsce publish
