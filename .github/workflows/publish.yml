@@ -1,40 +1,44 @@
 name: Publish VS Code Extension
 
+# Trigger: pubblica solo su push su main o quando crei un tag
 on:
   push:
     branches:
       - master
-    paths:
-      - '**.json'
-      - '**.md'
-      - '**.png'
-      - '**.vsix'
-      - 'themes/**'
-      - 'package.json'
+    tags:
+      - 'v*'
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout del repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
+      # 3️⃣ Install vsce
       - name: Install vsce
-        run: npm install -g vsce
+        run: npm install -g vsce@latest
 
+      # 4️⃣ Install dependencies (se serve)
       - name: Install dependencies
-        run: npm install
+        run: npm install || echo "No dependencies"
 
-      - name: Package extension (optional)
+      # 5️⃣ Optional: package locale per test
+      - name: Package extension
         run: vsce package
 
+      # 6️⃣ Publish sul Marketplace
       - name: Publish extension
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: vsce publish
+        run: |
+          echo "Publishing NeoMint Dark extension..."
+          vsce publish
