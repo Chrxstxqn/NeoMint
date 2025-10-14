@@ -1,6 +1,6 @@
 name: Publish VS Code Extension
 
-# Trigger: pubblica solo su push su main o quando crei un tag
+# Trigger: pubblica solo su push su master o quando crei un tag
 on:
   push:
     branches:
@@ -38,7 +38,7 @@ jobs:
       # 6️⃣ Publish sul Marketplace
       - name: Publish extension
         env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          VSCE_PAT: ${{ secrets.VSCE_TOKEN }}
         run: |
           echo "Publishing NeoMint Dark extension..."
           vsce publish
