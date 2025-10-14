@@ -2,8 +2,13 @@
   "name": "neomint-dark",
   "displayName": "NeoMint Dark",
   "description": "A modern dark theme with mint-green highlights.",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "publisher": "Chrxstxqn",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chrxstxqn/NeoMint.git"
+  },
   "engines": {
     "vscode": "^1.105.0"
   },
