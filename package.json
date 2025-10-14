@@ -1,0 +1,27 @@
+{
+  "name": "neomint-dark",
+  "displayName": "NeoMint Dark",
+  "description": "A modern dark theme with mint-green highlights.",
+  "version": "0.0.1",
+  "publisher": "Chrxstxqn",
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "NeoMint Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/NeoMint Dark-color-theme.json"
+      },
+      {
+        "label": "NeoMint Soft",
+        "uiTheme": "vs-dark",
+        "path": "./themes/NeoMint Soft-color-theme.json"
+      }
+    ]
+  }
+}
